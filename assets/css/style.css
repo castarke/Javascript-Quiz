@@ -1,0 +1,164 @@
+
+:root {
+    background-color: #bc2525;
+    font-size: 65%;
+}
+
+*{
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h4 {
+    font-size: 5.4rem;
+    color: goldenrod;
+    /* margin-bottom: 5rem; */
+}
+
+.highscores {
+    width: 100vw;
+    height: 10vw;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 4rem;
+}
+
+#quiz {
+    /* width: 100vw;
+    height: 10vw; */
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    padding: 5rem;
+    text-align: center;
+}
+
+
+.flex-column{
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-center {
+    justify-content: center;
+    align-items: start;
+}
+
+/* .justify-center {
+    justify-content: center;
+}
+
+.text-center {
+    text-align: center;
+} */
+
+.hidden {
+    display: none;
+}
+
+p {
+    font-size: 2.8rem;
+    color:darkslategrey;
+}
+
+.choice-container {
+    display: flex;
+    margin-bottom: .5rem;
+    width: 75%;
+    font-size: 2.8rem;
+    border: .1rem solid rgba(86,165, 235, .25);
+    background-color: white;
+    
+}
+
+.choice-container:hover {
+    cursor: pointer;
+    box-shadow: 0 0.4rem 1.4rem 0 rgba(215, 218, 12, 0.791);
+    transform: translateY(-0.1rem);
+    transition: transform 150ms;}
+
+.choice-letter {
+    padding: .5rem 2rem;
+    background-color: goldenrod;
+    color: black;
+}
+.choice-guess {
+    padding: 1rem;
+    width: 100%;
+}
+header {
+    display: flex;
+    justify-content: center;
+    align-content: flex-end;
+    padding: 4rem;
+}
+
+.view {
+    display: flex;
+    justify-content: space-around;
+    font-size: 1.8rem;
+    width: 18rem;
+    text-align: center;
+    border: 0.2rem solid goldenrod;
+    margin-bottom: 1rem;
+    text-decoration: none;
+    color: goldenrod;
+    background-color: black;
+}
+
+.view:hover {
+    cursor: pointer;
+    box-shadow: 0 0.4rem 1.4rem 0 rgba(86, 185, 235, 0.5);
+    transform: translateY(-0.1rem);
+    transition: transform 150ms;
+}
+
+.view[disabled]:hover {
+    cursor:not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+input {
+    background-color: black;
+    color: goldenrod;
+    width: 10rem;
+    height: 10rem;
+    font-size: 3rem;
+    border: 0.2rem solid goldenrod;
+}
+/* .start-button { 
+    display: flex;
+    justify-content: center;
+    font-size: 1.8rem;
+    width: 20rem;
+    border-radius: 2rem;
+    text-align: center;
+    color: yellow;
+    background-color: black;
+} */
+
+.start-button:hover {
+    cursor: pointer;
+    box-shadow: 0 0.4rem 1.4rem 0 rgba(86, 185, 235, 0.5);
+    transform: translateY(-0.1rem);
+    transition: transform 150ms;
+}
+
+.correct {
+    background-color: green;
+}
+
+.incorrect {
+    background-color: red;
+}
+
+#timer-text {
+    font-size: 3rem;
+    display: flex;
+    justify-content: center;
+    padding: 2;
+}
