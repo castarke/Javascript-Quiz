@@ -12,6 +12,8 @@ var timer;
 var timerCount;
 var startButton = document.querySelector(".start-button");
 var timeleft = 75;
+
+
 let questions = [
     {
         question: "Inside which HTML element do we put the JavaScript?",
@@ -149,14 +151,15 @@ choices.forEach(choice => {
 
         const chosenAnswer = selectedAnswer === currentQuestion.answer ? 'correct' : 'incorrect';
 
-// debugger        
-
-
+       
         selectedChoice.parentElement.classList.add(chosenAnswer);
         console.log(selectedAnswer)
-        if(chosenAnswer === false) {
-            timerCount-=10;
-        }
+        if(chosenAnswer === 'incorrect') {
+            timeleft-=5;
+         } else {
+            rightPoints+=10;
+         }
+        
 
         if (chosenAnswer)
         
@@ -183,7 +186,7 @@ function startTimer() {
       } else {
         document.getElementById("timer-text").innerHTML = timeleft + " seconds remaining";
       }
-      timeleft -= 1;
+      timeleft --;
     }, 1000);}
     
 start.addEventListener("click", startGame);
