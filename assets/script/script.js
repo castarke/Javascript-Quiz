@@ -2,12 +2,6 @@ const question = document.getElementById("question")
 
 const choices = Array.from(document.getElementsByClassName("choice-guess"));
 
-// const  questionCounterText = document.getElementById("questionCountersText");
-
-// const scoreText = document.getElementById("scoreText") 
-
-// var timerElement = document.querySelector(".timer-count");
-// var startButton = document.querySelector(".start-button");
 
 let currentQuestion = {};
 let acceptingAnswers = true;
@@ -16,9 +10,8 @@ let questionCounter = 0;
 let availableQuestions = [];
 var timer;
 var timerCount;
-// var start = document.querySelector(".start")
 var startButton = document.querySelector(".start-button");
-
+var timeleft = 75;
 let questions = [
     {
         question: "Inside which HTML element do we put the JavaScript?",
@@ -106,33 +99,29 @@ let questions = [
 const rightPoints = 10;
 const numberofQuestions = 10;
 
-function startButton(){
-    startButton.addEventListener("click", startTimer);
-}
 
 function hideButton(){
 
     document.getElementById('start').style.visibility= 'hidden';
-    
     }
 startGame = ()=> {
     questionCounter = 0;
     score = 0;
     availableQuestions = [...questions];
     console.log(availableQuestions);
-    timerCount=50
+    timerCount=75
     startButton.disabled = true;
     getNewQuestion();
-    startTimer();
 }
 
 getNewQuestion = () => {
- 
+
+const quizContainer = document.getElementById("quiz-container");
+quizContainer.removeAttribute('class', 'hidden');
+
 if(availableQuestions.length === 0 || questionCounter >= numberofQuestions) {
     return window.location.assign("/end.html");
 }   questionCounter++;
-    // questionCounterText.innerText = questionCounter + "/" + numberofQuestions;
-
 
    const questionIndex = Math.floor(Math.random() * availableQuestions.length);
    currentQuestion = availableQuestions[questionIndex];
@@ -145,31 +134,32 @@ if(availableQuestions.length === 0 || questionCounter >= numberofQuestions) {
 
    availableQuestions.splice(questionIndex, 1);
    
-   acceptingAnswers =true;
-
-//    questionCounterVariable.innerText = questionCounter + "/" + numberofQuestions;
+   acceptingAnswers = true;
 };
 
 choices.forEach(choice => {
 
     choice.addEventListener('click', function(event){
+
         if (!acceptingAnswers) return;
 
         acceptingAnswers = false;
         const selectedChoice = event.target;
         const selectedAnswer = selectedChoice.dataset["number"];
 
-        const chosenAnswer = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect';
+        const chosenAnswer = selectedAnswer === currentQuestion.answer ? 'correct' : 'incorrect';
 
-        console.log(chosenAnswer)
-
-        // if(chosenAnswer == 'correct') {
-        //     incrementScore(rightPoints);
-        // }
+// debugger        
 
 
         selectedChoice.parentElement.classList.add(chosenAnswer);
+        console.log(selectedAnswer)
+        if(chosenAnswer === false) {
+            timerCount-=10;
+        }
 
+        if (chosenAnswer)
+        
         setTimeout(() => {
 
 
@@ -182,11 +172,10 @@ choices.forEach(choice => {
         },1000);
     });
 })
-startButton.addEventListener("click", startGame);
 
 function startTimer() {
     // Sets timer
-    var timeleft = 50;
+   
     var quizTimer = setInterval(function(){
       if(timeleft <= 0){
         clearInterval(quizTimer);
@@ -196,19 +185,13 @@ function startTimer() {
       }
       timeleft -= 1;
     }, 1000);}
-    function startGame()
-{
-    document.getElementById("start").style="color:green;";
-    startTimer();
-};
     
-
+start.addEventListener("click", startGame);
 // incrementScore = num => {
 //     score += num;
 //     scoreText.innerText = score;
 // }
 
-startGame()
 
         // question: "",
         // choice1: "",

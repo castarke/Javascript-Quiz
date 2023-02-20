@@ -47,13 +47,13 @@ h1, h2, h4 {
     align-items: start;
 }
 
-/* .justify-center {
+.justify-center {
     justify-content: center;
 }
 
 .text-center {
     text-align: center;
-} */
+}
 
 .hidden {
     display: none;
