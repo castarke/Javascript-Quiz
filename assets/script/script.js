@@ -12,7 +12,7 @@ var timerCount;
 var startButton = document.querySelector(".start-button");
 var timeleft = 75;
 var nameEl= document.getElementById('name');
-
+var submitButton = document.querySelector(".submitButton");
 
 let questions = [
     {
@@ -104,6 +104,8 @@ const numberofQuestions = 10;
 function hideButton(){
 
     document.getElementById('start').style.visibility= 'hidden';
+    document.getElementById('submitButton').style.visibility= 'hidden';
+    document.getElementById('name').style.visibility= 'hidden';
     }
 startGame = ()=> {
     questionCounter = 0;
@@ -113,14 +115,27 @@ startGame = ()=> {
     startButton.disabled = true;
     getNewQuestion();
 }
-
+function endgame() {
+    // create submit button on 118
+    const submitContainer =document.getElementById("submitContainer");
+    submitContainer.removeAttribute('class', 'hidden');
+    document.getElementById('.submitButton')
+    submitButton.addEventListener("click",submitHighscores);
+    //   saving to local storage
+    submitHighscores();
+    //   change to highscore html
+    window.location.href="highscore.html";
+    }
+    
 getNewQuestion = () => {
 
 const quizContainer = document.getElementById("quiz-container");
 quizContainer.removeAttribute('class', 'hidden');
 
 if(availableQuestions.length === 0 || questionCounter >= numberofQuestions) {
-    return window.location.href="highscore.html";
+    // window.location.href="highscore.html";
+
+    return endgame();
 }   questionCounter++;
 
    const questionIndex = Math.floor(Math.random() * availableQuestions.length);
@@ -188,7 +203,7 @@ function startTimer() {
 start.addEventListener("click", startGame);
 
 
-function showHighscores() {
+function submitHighscores() {
     var name = nameEl.value.trim();
     var score = {
         score: timeleft,
@@ -201,14 +216,7 @@ function showHighscores() {
     window.localStorage.setItem('highscore', JSON.stringify(highscore));
 }
 
-function writeHighscore() {
-    var highscore =
-    JSON.parse(window.localStorage.getItem('highscore')) || [];
-    for (var i=0; i < highscore.length; i++) {
-        var showScore = document.createElement("h2");
-        showScore.textContent=highscore[i].name + highscore.score;
-    }
-}
+
 
 
         // question: "",
