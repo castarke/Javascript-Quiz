@@ -149,17 +149,15 @@ choices.forEach(choice => {
         const selectedChoice = event.target;
         const selectedAnswer = selectedChoice.dataset["number"];
 
-        const chosenAnswer = selectedAnswer === currentQuestion.answer ? 'correct' : 'incorrect';
+        const chosenAnswer = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect';
 
-       
+// debugger
         selectedChoice.parentElement.classList.add(chosenAnswer);
         console.log(selectedAnswer)
-        if(chosenAnswer === 'incorrect') {
+        if(chosenAnswer == 'incorrect') 
+        {
             timeleft-=5;
-         } else {
-            rightPoints+=10;
-         }
-        
+         } 
 
         if (chosenAnswer)
         
