@@ -98,7 +98,6 @@ let questions = [
     }
 ];
 
-const rightPoints = 10;
 const numberofQuestions = 10;
 
 
@@ -199,7 +198,7 @@ function showHighscores() {
     JSON.parse(window.localStorage.getItem('highscore')) || [];
 
     highscore.push(score);
-window.localStorage.setItem('highscore', JSON.stringify(highscore));
+    window.localStorage.setItem('highscore', JSON.stringify(highscore));
 }
 
 function writeHighscore() {
@@ -207,6 +206,7 @@ function writeHighscore() {
     JSON.parse(window.localStorage.getItem('highscore')) || [];
     for (var i=0; i < highscore.length; i++) {
         var showScore = document.createElement("h2");
+        showScore.textContent=highscore[i].name + highscore.score;
     }
 }
 
