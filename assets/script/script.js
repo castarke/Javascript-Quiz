@@ -5,13 +5,13 @@ const choices = Array.from(document.getElementsByClassName("choice-guess"));
 
 let currentQuestion = {};
 let acceptingAnswers = true;
-let score = 0;
 let questionCounter = 0;
 let availableQuestions = [];
 var timer;
 var timerCount;
 var startButton = document.querySelector(".start-button");
 var timeleft = 75;
+var nameEl= document.getElementById('name');
 
 
 let questions = [
@@ -108,7 +108,6 @@ function hideButton(){
     }
 startGame = ()=> {
     questionCounter = 0;
-    score = 0;
     availableQuestions = [...questions];
     console.log(availableQuestions);
     timerCount=75
@@ -122,7 +121,7 @@ const quizContainer = document.getElementById("quiz-container");
 quizContainer.removeAttribute('class', 'hidden');
 
 if(availableQuestions.length === 0 || questionCounter >= numberofQuestions) {
-    return window.location.assign("/end.html");
+    return window.location.href="highscore.html";
 }   questionCounter++;
 
    const questionIndex = Math.floor(Math.random() * availableQuestions.length);
@@ -188,10 +187,28 @@ function startTimer() {
     }, 1000);}
     
 start.addEventListener("click", startGame);
-// incrementScore = num => {
-//     score += num;
-//     scoreText.innerText = score;
-// }
+
+
+function showHighscores() {
+    var name = nameEl.value.trim();
+    var score = {
+        score: timeleft,
+        name: name,
+    }
+    var highscore =
+    JSON.parse(window.localStorage.getItem('highscore')) || [];
+
+    highscore.push(score);
+window.localStorage.setItem('highscore', JSON.stringify(highscore));
+}
+
+function writeHighscore() {
+    var highscore =
+    JSON.parse(window.localStorage.getItem('highscore')) || [];
+    for (var i=0; i < highscore.length; i++) {
+        var showScore = document.createElement("h2");
+    }
+}
 
 
         // question: "",
