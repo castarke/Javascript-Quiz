@@ -1,7 +1,9 @@
-const question = document.getElementById("question")
 
+// adding to proper area of HTML
+const question = document.getElementById("question")
 const choices = Array.from(document.getElementsByClassName("choice-guess"));
 
+// establishing global variables
 
 let currentQuestion = {};
 let acceptingAnswers = true;
@@ -14,6 +16,7 @@ var timeleft = 75;
 var nameEl= document.getElementById('name');
 var submitButton = document.querySelector(".submitButton");
 
+// creating question array 
 let questions = [
     {
         question: "Inside which HTML element do we put the JavaScript?",
@@ -98,15 +101,17 @@ let questions = [
     }
 ];
 
+
+//number of questions
+
 const numberofQuestions = 10;
 
-
+// hiding the start button while quizes is going
 function hideButton(){
 
     document.getElementById('start').style.visibility= 'hidden';
-    document.getElementById('submitButton').style.visibility= 'hidden';
-    document.getElementById('name').style.visibility= 'hidden';
     }
+// starting quiz code
 startGame = ()=> {
     questionCounter = 0;
     availableQuestions = [...questions];
@@ -115,18 +120,22 @@ startGame = ()=> {
     startButton.disabled = true;
     getNewQuestion();
 }
+
+// pulling the submit button, and inital box in
+const submitContainer =document.getElementById("submitContainer");
+
+// generating the submit and text box at end of quiz
 function endgame() {
     // create submit button on 118
-    const submitContainer =document.getElementById("submitContainer");
+    // const submitContainer =document.getElementById("submitContainer");
     submitContainer.removeAttribute('class', 'hidden');
     document.getElementById('.submitButton')
-    submitButton.addEventListener("click",submitHighscores);
-    //   saving to local storage
-    submitHighscores();
-    //   change to highscore html
-    window.location.href="highscore.html";
+    // submitButton.addEventListener("click",submitHighscores);
+    //   saving to local storagef
+   
     }
     
+// randomizes and pulls questions from question array when game is started. also decrements time when incorrect
 getNewQuestion = () => {
 
 const quizContainer = document.getElementById("quiz-container");
@@ -187,6 +196,8 @@ choices.forEach(choice => {
     });
 })
 
+// starts quiz clock
+
 function startTimer() {
     // Sets timer
    
@@ -194,15 +205,18 @@ function startTimer() {
       if(timeleft <= 0){
         clearInterval(quizTimer);
         document.getElementById("timer-text").innerHTML = "Finished";
+        endgame();
       } else {
         document.getElementById("timer-text").innerHTML = timeleft + " seconds remaining";
       }
       timeleft --;
     }, 1000);}
     
+    // starts clock at start game and submits highscores at end game
 start.addEventListener("click", startGame);
+submitButton.addEventListener("click",submitHighscores);
 
-
+// saving highscores to local memory
 function submitHighscores() {
     var name = nameEl.value.trim();
     var score = {
@@ -214,6 +228,8 @@ function submitHighscores() {
 
     highscore.push(score);
     window.localStorage.setItem('highscore', JSON.stringify(highscore));
+    //   change to highscore html
+    window.location.href="highscore.html";
 }
 
 
