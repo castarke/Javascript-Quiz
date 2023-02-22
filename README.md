@@ -9,6 +9,8 @@ In this repo you will find a 10 question quiz about Javascript. This Quiz was cr
 -assets
     -css
         -style.css
+    -photos
+        -screenshot.html.png
     -script
         -highscore.js
         -script.js
