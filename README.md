@@ -24,4 +24,4 @@ README.MD
 Please follow the link to the live page below:
 
 URL:
-Screenshot:
+![screenshot html](https://user-images.githubusercontent.com/122697165/220510126-2a5d481f-1919-45e8-bc28-1f77107d0c39.png)
